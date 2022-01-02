@@ -8,5 +8,8 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.0.1"
+  }
 }
