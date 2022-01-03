@@ -1,8 +1,12 @@
 import express from "express";
 import path from "path";
-
+import bodyParser from "body-parser";
+import {moviesApi} from "./moviesApi.js";
 
 const app = express();
+app.use(bodyParser.json());
+
+app.use("/api/movies", moviesApi);
 
 const reactPath = path.resolve("..", "client", "dist");
 app.use(express.static(reactPath));

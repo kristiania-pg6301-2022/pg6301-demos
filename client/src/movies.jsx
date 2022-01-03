@@ -67,22 +67,24 @@ function ShowMovie({moviesApi}) {
 }
 
 export function Movies() {
-    const [movies, setMovies] = useState([]);
-
     async function createMovie(movie) {
-        setMovies(value => [...value, {id: value.length.toString(), ...movie}]);
+        await fetch("/api/movies", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(movie)
+        });
     }
 
     async function listMovies() {
-        return movies;
+        const res = await fetch("/api/movies");
+        return await res.json();
     }
 
     async function getMovie(id) {
-        const movie = movies.find(m => m.id === id);
-        if (!movie) {
-            console.log({id, movies});
-        }
-        return movie;
+        const res = await fetch(`/api/movies/${id}`);
+        return await res.json();
     }
 
     const moviesApi = {
