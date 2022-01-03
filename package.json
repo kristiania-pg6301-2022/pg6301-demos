@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "cd server && npm start",
     "dev": "concurrently npm:dev:client npm:dev:server",
     "dev:client": "cd client && npm start",
     "dev:server": "cd server && npm run dev",
