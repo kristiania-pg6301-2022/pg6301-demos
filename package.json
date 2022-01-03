@@ -1,0 +1,22 @@
+{
+  "name": "pg6301-demos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run dev:client",
+    "dev:client": "cd client && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristiania-pg6301-2022/pg6301-demos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristiania-pg6301-2022/pg6301-demos/issues"
+  },
+  "homepage": "https://github.com/kristiania-pg6301-2022/pg6301-demos#readme"
+}
