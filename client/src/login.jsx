@@ -7,7 +7,7 @@ function StartLogin() {
         const {authorization} = (await res.json());
         const {client_id, scope, authorization_endpoint} = authorization;
         const params = {scope, client_id};
-            window.location.href = authorization_endpoint + "?" + new URLSearchParams(params);
+        window.location.href = authorization_endpoint + "?" + new URLSearchParams(params);
     }, []);
     return <div>Please wait</div>;
 }

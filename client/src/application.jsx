@@ -15,7 +15,7 @@ function FrontPage({user}) {
 function Repositories({accessToken}) {
     const [repos, setRepos] = useState();
     useEffect(async () => {
-        const res = await fetch("https://api.github.com/user/repos?visible=public&per_page=100", {
+        const res = await fetch("https://api.github.com/orgs/kristiania-pgr203-2021/repos", {
             headers: {
                 accept: "application/vnd.github.v3+json",
                 authorization: `Bearer ${accessToken}`

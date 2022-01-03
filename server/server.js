@@ -17,7 +17,7 @@ app.get("/api/login", (req, res) => {
     res.json({
         authorization: {
             authorization_endpoint: "https://github.com/login/oauth/authorize",
-            scope: "user:email",
+            scope: "repo",
             client_id
         }
     });
