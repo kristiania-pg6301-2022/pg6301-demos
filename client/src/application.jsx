@@ -1,5 +1,6 @@
 import * as React from "react";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {Movies} from "./movies";
 
 export function FrontPage() {
     return <>
@@ -11,18 +12,13 @@ export function FrontPage() {
     </>;
 }
 
-function Movies() {
-    return <Routes>
-        <Route path={"/"} element={<h1>Movie List</h1>} />
-        <Route path={"/new"} element={<h1>Add new movie</h1>} />
-    </Routes>;
-}
-
 export function Application() {
-    return <BrowserRouter>
-        <Routes>
-            <Route path={"/"} element={<FrontPage />} />
-            <Route path={"/movies/*"} element={<Movies />} />
-        </Routes>
-    </BrowserRouter>
+    return <React.StrictMode>
+        <BrowserRouter>
+            <Routes>
+                <Route path={"/"} element={<FrontPage/>}/>
+                <Route path={"/movies/*"} element={<Movies/>}/>
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>
 }
