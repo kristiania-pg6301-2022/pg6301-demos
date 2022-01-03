@@ -1,3 +1,7 @@
 /*.iml
 /.idea/
-server/.env
+.env
+node_modules
+client/dist
+client/.parcel-cache
+
