@@ -1,5 +1,9 @@
 const express = require("express");
 const path = require("path");
+require('dotenv').config();
+
+const client_id = process.env.GITHUB_CLIENT_ID
+const client_secret = process.env.GITHUB_CLIENT_SECRET
 
 const app = express();
 
@@ -7,8 +11,8 @@ app.get("/api/login", (req, res) => {
     res.json({
        authorization: {
            authorization_endpoint: "https://github.com/login/oauth/authorize",
-           client_id: "b3d323b25d823f9e3e97",
-           scope: "user:email"
+           scope: "user:email",
+           client_id
        }
     });
 });
