@@ -1,5 +1,6 @@
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {useState} from "react";
+import {Login} from "./login";
 
 function FrontPage({accessToken}) {
     return <>
@@ -8,10 +9,6 @@ function FrontPage({accessToken}) {
         {accessToken && <div><Link to={"/login/endsession"}>Logout</Link></div>}
         {!accessToken && <div><Link to={"/login"}>Log in</Link></div>}
         </>;
-}
-
-function Login({setAccessToken}) {
-    return <h1>Login</h1>;
 }
 
 export function Application() {
