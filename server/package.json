@@ -9,9 +9,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
+    "body-parser": "^1.19.1",
     "dotenv": "^10.0.0",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "node-fetch": "^3.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
