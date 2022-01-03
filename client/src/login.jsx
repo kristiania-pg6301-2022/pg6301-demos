@@ -1,10 +1,21 @@
 import {Link, Route, Routes} from "react-router-dom";
+import {useEffect, useState} from "react";
 
-function StartLogin({authorizationEndpoint = "https://github.com/login/oauth/authorize"}) {
+function StartLogin() {
+    const [authorization, setAuthorization] = useState();
+    useEffect(async () => {
+       const res = await fetch("/api/login");
+       setAuthorization((await res.json()).authorization);
+    }, []);
+
+    if (!authorization) {
+        return <div>Please wait</div>;
+    }
+    const { client_id, scope, authorization_endpoint } = authorization;
     const params = {
-        scope: "user:email", client_id: "b3d323b25d823f9e3e97"
+        scope, client_id
     };
-    const link = authorizationEndpoint  + "?" + new URLSearchParams(params);
+    const link = authorization_endpoint  + "?" + new URLSearchParams(params);
     return <a href={link}>Click here</a>;
 }
 

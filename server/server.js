@@ -3,6 +3,20 @@ const path = require("path");
 
 const app = express();
 
+app.get("/api/login", (req, res) => {
+    res.json({
+       authorization: {
+           authorization_endpoint: "https://github.com/login/oauth/authorize",
+           client_id: "b3d323b25d823f9e3e97",
+           scope: "user:email"
+       }
+    });
+});
+
+app.post("/api/login/callback", (req, res) => {
+
+});
+
 
 app.use(express.static(path.join(__dirname, "..", "client", "dist")));
 app.use((req, res, next) => {
