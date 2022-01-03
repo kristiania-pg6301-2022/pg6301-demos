@@ -2,6 +2,28 @@ import {Link, Route, Routes, useNavigate, useParams} from "react-router-dom";
 import * as React from "react";
 import {useEffect, useState} from "react";
 
+class MoviesApi {
+    async createMovie(movie) {
+        await fetch("/api/movies", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(movie)
+        });
+    }
+
+    async listMovies() {
+        const res = await fetch("/api/movies");
+        return await res.json();
+    }
+
+    async getMovie(id) {
+        const res = await fetch(`/api/movies/${id}`);
+        return await res.json();
+    }
+}
+
 function ListMovies({moviesApi}) {
     const [movies, setMovies] = useState();
     useEffect(async () => {
@@ -67,33 +89,11 @@ function ShowMovie({moviesApi}) {
 }
 
 export function Movies() {
-    async function createMovie(movie) {
-        await fetch("/api/movies", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(movie)
-        });
-    }
-
-    async function listMovies() {
-        const res = await fetch("/api/movies");
-        return await res.json();
-    }
-
-    async function getMovie(id) {
-        const res = await fetch(`/api/movies/${id}`);
-        return await res.json();
-    }
-
-    const moviesApi = {
-        createMovie, listMovies, getMovie
-    };
-
+    const moviesApi = new MoviesApi();
     return <Routes>
         <Route path={"/"} element={<ListMovies moviesApi={moviesApi}/>}/>
         <Route path={"/new"} element={<AddMovie moviesApi={moviesApi}/>}/>
         <Route path={"/:id"} element={<ShowMovie moviesApi={moviesApi}/>}/>
     </Routes>;
 }
+
