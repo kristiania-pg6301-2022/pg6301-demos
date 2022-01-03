@@ -6,9 +6,28 @@ function FrontPage({user}) {
     return <>
         {user && <h2>{user.name}</h2>}
         <h1>Hello Github</h1>
-        {user && <div><Link to={"/projects"}>My projects</Link></div>}
+        {user && <div><Link to={"/repos"}>My repos</Link></div>}
         {user && <div><Link to={"/login/endsession"}>Logout</Link></div>}
         {!user && <div><Link to={"/login"}>Log in</Link></div>}
+        </>;
+}
+
+function Repositories({accessToken}) {
+    const [repos, setRepos] = useState();
+    useEffect(async () => {
+        const res = await fetch("https://api.github.com/user/repos?visible=public&per_page=100", {
+            headers: {
+                accept: "application/vnd.github.v3+json",
+                authorization: `Bearer ${accessToken}`
+            }
+        });
+        setRepos(await res.json());
+    }, [accessToken]);
+    return <>
+        <h1>My projects</h1>
+        {repos && repos.map(r => (
+            <div>{r.full_name}</div>
+        ))}
         </>;
 }
 
@@ -31,7 +50,7 @@ export function Application() {
     return <BrowserRouter>
         <Routes>
             <Route path={"/"} element={<FrontPage user={user} />} />
-            {accessToken && <Route path={"/projects"} element={<h1>My projects</h1>} />}
+            {accessToken && <Route path={"/repos"} element={<Repositories accessToken={accessToken}/>} />}
             <Route path={"/login/*"} element={<Login setAccessToken={setAccessToken} />} />
             <Route path={"*"} element={<h1>Not found</h1>} />
         </Routes>
